@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { RefreshCw, Moon, Sun } from "lucide-react";
+import { RefreshCw, Moon, Sun, Database, FileJson } from "lucide-react";
+import { useState, useEffect } from "react";
 
 interface HeaderProps {
   autoRefresh: boolean;
@@ -16,6 +17,24 @@ export default function Header({
   isDarkMode,
   toggleTheme
 }: HeaderProps) {
+  const [isStaticMode, setIsStaticMode] = useState(false);
+  
+  // Initialize from localStorage on component mount
+  useEffect(() => {
+    const storedValue = localStorage.getItem('useStaticData');
+    setIsStaticMode(storedValue === 'true');
+  }, []);
+  
+  // Toggle between API mode and static file mode
+  const toggleStaticMode = () => {
+    const newValue = !isStaticMode;
+    localStorage.setItem('useStaticData', newValue.toString());
+    setIsStaticMode(newValue);
+    
+    // Refresh the page to apply the changes
+    window.location.reload();
+  };
+  
   return (
     <header className="bg-gradient-to-r from-primary to-primary-light dark:from-primary-dark dark:to-primary text-white shadow-md">
       <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between">
@@ -36,8 +55,8 @@ export default function Header({
           </div>
         </div>
         
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 flex-wrap justify-center">
+          <div className="flex items-center space-x-2 mr-2">
             <Button 
               onClick={toggleAutoRefresh}
               variant="ghost" 
@@ -55,18 +74,41 @@ export default function Header({
             </Button>
           </div>
           
-          <Button 
-            onClick={toggleTheme}
-            variant="ghost" 
-            className="p-2 rounded-full hover:bg-white/20"
-            aria-label="Toggle theme"
-          >
-            {isDarkMode ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-          </Button>
+          <div className="flex items-center space-x-2">
+            {/* Data Source Toggle Button */}
+            <Button 
+              onClick={toggleStaticMode}
+              variant="ghost" 
+              className={`flex items-center px-3 py-1 ${isStaticMode ? 'bg-amber-500 text-white' : 'bg-white/20'} rounded-full text-sm hover:bg-white/30`}
+              title={isStaticMode ? "Using static JSON files" : "Using API data"}
+            >
+              {isStaticMode ? (
+                <>
+                  <FileJson className="h-4 w-4 mr-1" />
+                  <span>Static</span>
+                </>
+              ) : (
+                <>
+                  <Database className="h-4 w-4 mr-1" />
+                  <span>API</span>
+                </>
+              )}
+            </Button>
+            
+            {/* Theme Toggle Button */}
+            <Button 
+              onClick={toggleTheme}
+              variant="ghost" 
+              className="p-2 rounded-full hover:bg-white/20"
+              aria-label="Toggle theme"
+            >
+              {isDarkMode ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
+            </Button>
+          </div>
         </div>
       </div>
     </header>
