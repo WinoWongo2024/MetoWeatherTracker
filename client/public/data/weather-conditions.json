@@ -1,0 +1,10 @@
+[
+  { "name": "Sunny", "icon": "sunny" },
+  { "name": "Partly Cloudy", "icon": "partly-cloudy" },
+  { "name": "Cloudy", "icon": "cloudy" },
+  { "name": "Rain", "icon": "rain" },
+  { "name": "Thunderstorm", "icon": "thunderstorm" },
+  { "name": "Snow", "icon": "snow" },
+  { "name": "Fog", "icon": "fog" },
+  { "name": "Clear Night", "icon": "clear-night" }
+]
