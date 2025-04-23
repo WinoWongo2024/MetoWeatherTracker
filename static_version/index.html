@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Méto ÖestVèl Weather</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
+  <header class="bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-800 dark:to-blue-600 text-white shadow-md">
+    <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between">
+      <div class="flex items-center space-x-2 mb-4 md:mb-0">
+        <i class="fas fa-sun text-4xl"></i>
+        <div>
+          <h1 class="text-2xl font-bold">Méto ÖestVèl</h1>
+          <p class="text-xs opacity-80">Your trusted weather source</p>
+        </div>
+      </div>
+      
+      <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-2">
+          <button id="autoRefreshBtn" class="flex items-center px-3 py-1 bg-white/20 rounded-full text-sm hover:bg-white/30">
+            <span>Auto refresh: OFF</span>
+          </button>
+          <button id="refreshBtn" class="p-2 rounded-full hover:bg-white/20 transition-transform duration-500 hover:rotate-180">
+            <i class="fas fa-sync-alt"></i>
+          </button>
+        </div>
+        
+        <button id="themeToggleBtn" class="p-2 rounded-full hover:bg-white/20">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8">
+    <!-- Current Weather Card -->
+    <div id="currentWeather" class="fade-in mb-8"></div>
+    
+    <!-- Hourly Forecast -->
+    <div id="hourlyForecast" class="mb-8 fade-in"></div>
+    
+    <!-- Daily Forecast -->
+    <div id="dailyForecast" class="fade-in"></div>
+  </main>
+
+  <footer class="container mx-auto px-4 py-4 mt-auto text-center text-sm text-gray-500 dark:text-gray-400">
+    <p id="lastUpdated"></p>
+    <p>Méto ÖestVèl Weather Service &copy; 2025</p>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

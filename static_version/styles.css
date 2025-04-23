@@ -1,0 +1,220 @@
+/* Custom CSS for Méto ÖestVèl Weather */
+
+/* Dark mode */
+.dark {
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --text-color: #f0f0f0;
+  --secondary-text: #a0a0a0;
+  --primary-color: #3b82f6;
+  --primary-light: #60a5fa;
+  --accent-color: #f59e0b;
+}
+
+/* Light mode */
+:root {
+  --bg-color: #f3f4f6;
+  --card-bg: #ffffff;
+  --text-color: #1f2937;
+  --secondary-text: #6b7280;
+  --primary-color: #2563eb;
+  --primary-light: #3b82f6;
+  --accent-color: #f59e0b;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Fade-in animation */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card styles */
+.weather-card {
+  background-color: var(--card-bg);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.weather-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Current weather card */
+.current-weather-card {
+  background: linear-gradient(to right, rgba(59, 130, 246, 0.1), transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+.dark .current-weather-card {
+  background: linear-gradient(to right, rgba(59, 130, 246, 0.2), rgba(30, 30, 30, 0.1));
+}
+
+/* Temperature display */
+.temp-display {
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Weather icon styles */
+.weather-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.dark .weather-icon {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Hourly forecast cards */
+.hourly-card {
+  min-width: 100px;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  background-color: var(--card-bg);
+  transition: transform 0.2s;
+}
+
+.hourly-card:hover {
+  transform: translateY(-4px);
+}
+
+.hourly-card.current-hour {
+  background: linear-gradient(to bottom, rgba(59, 130, 246, 0.2), var(--card-bg));
+  border-left: 3px solid var(--primary-color);
+}
+
+/* Daily forecast styles */
+.daily-row {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dark .daily-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.daily-row.today {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.daily-row:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.dark .daily-row:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Weather details grid */
+.weather-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.weather-detail-card {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.dark .weather-detail-card {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.weather-detail-card:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+/* Responsive adaptations */
+@media (max-width: 640px) {
+  .weather-details {
+    grid-template-columns: 1fr;
+  }
+  
+  .hourly-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+  }
+}
+
+/* Icon colors */
+.icon-sun { color: #f59e0b; }
+.icon-cloud { color: #9ca3af; }
+.icon-rain { color: #3b82f6; }
+.icon-snow { color: #93c5fd; }
+.icon-wind { color: #10b981; }
+.icon-pressure { color: #8b5cf6; }
+.icon-humidity { color: #3b82f6; }
+.icon-uv { color: #f59e0b; }
+
+/* Temperature change animation */
+.temp-change {
+  transition: color 0.5s ease;
+}
+
+/* Button styles */
+button {
+  transition: all 0.2s;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+/* Section headings */
+.section-heading {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.section-heading i {
+  margin-right: 0.5rem;
+  color: var(--primary-color);
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "day": "Thursday",
+    "date": "Apr 24",
+    "high": "23°",
+    "low": "13°",
+    "condition": "partly-cloudy",
+    "conditionText": "Partly Cloudy"
+  },
+  {
+    "day": "Friday",
+    "date": "Apr 25",
+    "high": "21°",
+    "low": "14°",
+    "condition": "partly-cloudy",
+    "conditionText": "Partly Cloudy"
+  },
+  {
+    "day": "Saturday",
+    "date": "Apr 26",
+    "high": "25°",
+    "low": "15°",
+    "condition": "sunny",
+    "conditionText": "Sunny"
+  },
+  {
+    "day": "Sunday",
+    "date": "Apr 27",
+    "high": "24°",
+    "low": "16°",
+    "condition": "cloudy",
+    "conditionText": "Cloudy"
+  },
+  {
+    "day": "Monday",
+    "date": "Apr 28",
+    "high": "19°",
+    "low": "12°",
+    "condition": "rain",
+    "conditionText": "Rain"
+  }
+]
