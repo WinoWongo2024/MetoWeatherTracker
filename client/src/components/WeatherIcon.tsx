@@ -17,46 +17,151 @@ interface WeatherIconProps {
 }
 
 export default function WeatherIcon({ condition, size = 24 }: WeatherIconProps) {
-  const iconSize = size.toString();
-  const className = `h-${iconSize} w-${iconSize}`;
-  
   // Normalize the condition string to lowercase and remove spaces
   const normalizedCondition = condition.toLowerCase().replace(/\s+/g, '');
   
+  // Customized styling for each weather icon type
+  const iconStyles = {
+    sun: "text-yellow-500 dark:text-yellow-300",
+    partlyCloudy: "text-gray-700 dark:text-gray-300",
+    cloud: "text-gray-500 dark:text-gray-400",
+    rain: "text-blue-600 dark:text-blue-400",
+    snow: "text-sky-300 dark:text-sky-200",
+    fog: "text-slate-400 dark:text-slate-300",
+    thunder: "text-purple-600 dark:text-purple-400",
+    moon: "text-indigo-300 dark:text-indigo-200"
+  };
+  
   switch (normalizedCondition) {
     case 'sunny':
-      return <Sun className={`text-accent ${className}`} size={size} />;
     case 'clear':
-      return <Sun className={`text-accent ${className}`} size={size} />;
+      return (
+        <div className="relative">
+          <Sun 
+            size={size} 
+            className={`${iconStyles.sun} drop-shadow-md`} 
+            strokeWidth={1.5} 
+          />
+        </div>
+      );
+    
     case 'partlycloudy':
     case 'partly-cloudy':
-      return <CloudSun className={`text-primary ${className}`} size={size} />;
+      return (
+        <div className="relative">
+          <CloudSun 
+            size={size} 
+            className={`${iconStyles.partlyCloudy} drop-shadow-sm`} 
+            strokeWidth={1.5} 
+          />
+        </div>
+      );
+    
     case 'cloudy':
-      return <Cloud className={`text-primary ${className}`} size={size} />;
     case 'overcast':
-      return <Cloud className={`text-neutral-500 ${className}`} size={size} />;
+      return (
+        <div className="relative">
+          <Cloud 
+            size={size} 
+            className={`${iconStyles.cloud} drop-shadow-sm`} 
+            strokeWidth={1.5} 
+          />
+        </div>
+      );
+    
     case 'rain':
     case 'rainy':
-      return <CloudRain className={`text-primary ${className}`} size={size} />;
+      return (
+        <div className="relative">
+          <CloudRain 
+            size={size} 
+            className={`${iconStyles.rain} drop-shadow-sm`} 
+            strokeWidth={1.5} 
+          />
+        </div>
+      );
+    
     case 'drizzle':
-      return <CloudDrizzle className={`text-primary ${className}`} size={size} />;
+      return (
+        <div className="relative">
+          <CloudDrizzle 
+            size={size} 
+            className={`${iconStyles.rain} drop-shadow-sm`} 
+            strokeWidth={1.5} 
+          />
+        </div>
+      );
+    
     case 'snow':
     case 'snowy':
-      return <CloudSnow className={`text-primary ${className}`} size={size} />;
+      return (
+        <div className="relative">
+          <CloudSnow 
+            size={size} 
+            className={`${iconStyles.snow} drop-shadow-sm`} 
+            strokeWidth={1.5} 
+          />
+        </div>
+      );
+    
     case 'fog':
     case 'foggy':
     case 'mist':
-      return <CloudFog className={`text-neutral-500 ${className}`} size={size} />;
+      return (
+        <div className="relative">
+          <CloudFog 
+            size={size} 
+            className={`${iconStyles.fog} drop-shadow-sm`} 
+            strokeWidth={1.5} 
+          />
+        </div>
+      );
+    
     case 'thunderstorm':
     case 'thunder':
-      return <CloudLightning className={`text-primary ${className}`} size={size} />;
+      return (
+        <div className="relative">
+          <CloudLightning 
+            size={size} 
+            className={`${iconStyles.thunder} drop-shadow-sm`} 
+            strokeWidth={1.5} 
+          />
+        </div>
+      );
+    
     case 'clear-night':
     case 'clearnight':
-      return <Moon className={`text-neutral-500 ${className}`} size={size} />;
+      return (
+        <div className="relative">
+          <Moon 
+            size={size} 
+            className={`${iconStyles.moon} drop-shadow-sm`} 
+            strokeWidth={1.5} 
+          />
+        </div>
+      );
+    
     case 'partly-cloudy-night':
     case 'partlycloudynight':
-      return <CloudMoon className={`text-neutral-500 ${className}`} size={size} />;
+      return (
+        <div className="relative">
+          <CloudMoon 
+            size={size} 
+            className={`${iconStyles.moon} drop-shadow-sm`} 
+            strokeWidth={1.5} 
+          />
+        </div>
+      );
+    
     default:
-      return <Sun className={`text-accent ${className}`} size={size} />;
+      return (
+        <div className="relative">
+          <Sun 
+            size={size} 
+            className={`${iconStyles.sun} drop-shadow-md`} 
+            strokeWidth={1.5} 
+          />
+        </div>
+      );
   }
 }
