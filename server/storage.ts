@@ -42,7 +42,7 @@ export class MemStorage implements IStorage {
       const currentWeatherData = await fs.readFile(path.join(process.cwd(), 'data/current-weather.json'), 'utf8');
       const currentWeather = JSON.parse(currentWeatherData);
 
-      // Add dynamic date and time
+      // Add dynamic date and time with EVST (EastVeil Summer Time) timezone
       const currentDate = new Date();
       const date = currentDate.toLocaleDateString('en-US', {
         weekday: 'long',
@@ -54,7 +54,7 @@ export class MemStorage implements IStorage {
       const time = currentDate.toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit'
-      });
+      }) + ' EVST';
 
       currentWeather.date = date;
       currentWeather.time = time;
