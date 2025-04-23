@@ -42,16 +42,23 @@ export class MemStorage implements IStorage {
       const currentWeatherData = await fs.readFile(path.join(process.cwd(), 'data/current-weather.json'), 'utf8');
       const currentWeather = JSON.parse(currentWeatherData);
 
-      // Add dynamic date and time with EVST (EastVeil Summer Time) timezone
+      // Add dynamic date and time with EVST (EastVeil Summer Time) timezone - equivalent to CEST
       const currentDate = new Date();
-      const date = currentDate.toLocaleDateString('en-US', {
+      // Adjust to CEST/EVST (UTC+2)
+      const cestTime = new Date(currentDate.getTime());
+      // Get UTC time
+      const utcHoursForCurrent = currentDate.getUTCHours();
+      // Set to CEST/EVST (UTC+2)
+      cestTime.setUTCHours((utcHoursForCurrent + 2) % 24);
+      
+      const date = cestTime.toLocaleDateString('en-US', {
         weekday: 'long',
         month: 'long',
         day: 'numeric',
         year: 'numeric'
       });
       
-      const time = currentDate.toLocaleTimeString([], {
+      const time = cestTime.toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit'
       }) + ' EVST';
@@ -63,12 +70,16 @@ export class MemStorage implements IStorage {
       const hourlyForecastData = await fs.readFile(path.join(process.cwd(), 'data/hourly-forecast.json'), 'utf8');
       const allHourlyForecasts = JSON.parse(hourlyForecastData);
 
-      // Filter hourly forecasts starting from current hour and take next 8 hours
-      const currentHour = new Date().getHours();
+      // Filter hourly forecasts starting from current hour in EVST/CEST and take next 8 hours
+      // Get current hour in EVST/CEST timezone (UTC+2)
+      const nowForHourly = new Date();
+      const utcHoursForHourly = nowForHourly.getUTCHours();
+      const cestHour = (utcHoursForHourly + 2) % 24;
+      
       const hourlyForecasts = [];
       
       for (let i = 0; i < 8; i++) {
-        const hourIndex = (currentHour + i) % 24;
+        const hourIndex = (cestHour + i) % 24;
         hourlyForecasts.push(allHourlyForecasts[hourIndex]);
       }
 
